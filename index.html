@@ -234,6 +234,29 @@
             .search-panel {
                 padding: 14px;
             }
+
+            /* By default hide the desktop nav on small screens. When the mobile
+               menu is opened we add `nav-open` to <body> to show it (so the
+               hamburger can reveal the same links). This avoids using
+               !important and lets JS control visibility.) */
+            nav.active {
+                display: none;
+            }
+
+            body.nav-open nav.active {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                position: absolute;
+                top: 60px;
+                left: 20px;
+                right: 20px;
+                background: #ffffff;
+                padding: 16px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                z-index: 998;
+            }
         }
 
         /* Modal/detail responsive tweaks for small screens */
@@ -956,7 +979,7 @@
     <header>
         <div class="header-content">
             <div class="logo">🏠 Bí Ngô Villa</div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button id="menuToggle" class="menu-toggle" onclick="toggleMenu()" aria-controls="navMenu" aria-expanded="false">☰</button>
             <nav id="navMenu" class="nav-menu">
                 <a href="#home">Trang chủ</a>
                 <a href="#properties">Dịch vụ</a>
@@ -1388,8 +1411,15 @@
         }
 
         function toggleMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.classList.toggle('active');
+            const navMenu = document.getElementById('navMenu');
+            const btn = document.getElementById('menuToggle');
+            if (!navMenu) return;
+            const isOpen = navMenu.classList.toggle('active');
+            if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            // Prevent background scrolling when mobile menu is open
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            // Add class so CSS can show the desktop nav content in mobile layout
+            if (isOpen) document.body.classList.add('nav-open'); else document.body.classList.remove('nav-open');
         }
 
         function scrollToFilter() {
@@ -1397,6 +1427,11 @@
             if (panel) panel.scrollIntoView({ behavior: 'smooth' });
             const navMenu = document.querySelector('.nav-menu');
             if (navMenu) navMenu.classList.remove('active');
+            // also reset mobile nav state
+            const btn = document.getElementById('menuToggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = 'auto';
+            document.body.classList.remove('nav-open');
         }
 
         function toggleAdvancedFilters(e) {
@@ -1443,6 +1478,22 @@
                 const el = document.getElementById(id);
                 if (el) el.addEventListener('change', () => applyFilter());
             });
+
+            // Close mobile nav when a link inside it is clicked
+            const mobileNav = document.getElementById('navMenu');
+            if (mobileNav) {
+                mobileNav.addEventListener('click', (e) => {
+                    const target = e.target;
+                        if (target && (target.tagName === 'A' || target.classList.contains('cta-button'))) {
+                            mobileNav.classList.remove('active');
+                            const btn = document.getElementById('menuToggle');
+                            if (btn) btn.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = 'auto';
+                            // ensure the nav-open class is removed so desktop nav hides again
+                            document.body.classList.remove('nav-open');
+                        }
+                });
+            }
 
             // initial count
             const rc = document.getElementById('resultCount');
