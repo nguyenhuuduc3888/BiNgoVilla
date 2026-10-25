@@ -443,7 +443,9 @@
             color: #666666;
             margin-bottom: 12px;
             line-height: 1.5;
-            height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
@@ -806,6 +808,10 @@
             transition: color 0.3s ease;
         }
 
+        .footer-section a {
+            display: block;
+        }
+
         .footer-section a:hover {
             color: #f0c896;
         }
@@ -1003,7 +1009,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Tìm Ngôi Nhà Mơ Ước Của Bạn</h1>
-            <p>Khám phá hàng trăm căn hộ & villa cao cấp cho thuê với giá tốt nhất</p>
+            <p>Khám phá 12 căn hộ & villa cao cấp đang cho thuê với giá tốt nhất</p>
             <div class="search-panel" role="search" aria-label="Tìm kiếm bất động sản">
                 <div class="search-row">
                     <input type="text" id="searchQuery" placeholder="Tìm theo tên, quận, địa điểm..." aria-label="Tìm theo tên hoặc vị trí">
@@ -1093,17 +1099,17 @@
     <!-- Contact Section -->
     <section id="contact" style="background: #f0f8fb;">
         <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
-        <p class="section-subtitle">Hãy gửi yêu cầu tư vấn hoặc đặt phòng cho chúng tôi</p>
+        <p class="section-subtitle">Gọi trực tiếp để được tư vấn hoặc đặt phòng</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px;">
             <div style="background: #ffffff; padding: 24px; border-radius: 12px; text-align: center;">
                 <div style="font-size: 36px; margin-bottom: 12px;">📞</div>
                 <h3 style="font-weight: 700; margin-bottom: 8px;">Gọi cho chúng tôi</h3>
-                <p style="color: #1a5f7a; font-weight: 700; font-size: 16px;">0909-123-456</p>
+                <p style="color: #1a5f7a; font-weight: 700; font-size: 16px;"><a href="tel:0909123456" style="color: #1a5f7a;">0909-123-456</a></p>
             </div>
             <div style="background: #ffffff; padding: 24px; border-radius: 12px; text-align: center;">
                 <div style="font-size: 36px; margin-bottom: 12px;">📧</div>
                 <h3 style="font-weight: 700; margin-bottom: 8px;">Email</h3>
-                <p style="color: #666666; font-size: 15px;">info@homestay.vn</p>
+                <p style="color: #666666; font-size: 15px;"><a href="mailto:info@homestay.vn" style="color: #666666;">info@homestay.vn</a></p>
             </div>
             <div style="background: #ffffff; padding: 24px; border-radius: 12px; text-align: center;">
                 <div style="font-size: 36px; margin-bottom: 12px;">📍</div>
@@ -1128,20 +1134,14 @@
                 <a href="#contact">Liên hệ</a>
             </div>
             <div class="footer-section">
-                <h3>Chính Sách</h3>
-                <a href="#">Chính sách thuê</a>
-                <a href="#">Câu hỏi thường gặp</a>
-                <a href="#">Điều khoản sử dụng</a>
-            </div>
-            <div class="footer-section">
-                <h3>Kết Nối</h3>
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Zalo</a>
+                <h3>Liên Hệ Nhanh</h3>
+                <a href="tel:0909123456">📞 0909-123-456</a>
+                <a href="mailto:info@homestay.vn">📧 info@homestay.vn</a>
+                <a href="#contact">📍 123 Nguyễn Hữu Cảnh, Q. 1, TP.HCM</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Bí Ngô Villa — Cho thuê căn hộ & villa cao cấp. Tất cả quyền được bảo lưu.</p>
+            <p>&copy; 2026 Bí Ngô Villa — Cho thuê căn hộ & villa cao cấp. Tất cả quyền được bảo lưu.</p>
         </div>
     </footer>
 
@@ -1264,7 +1264,7 @@
 
         const properties = [
             { id: 1, name: 'Villa Sang Trọng Quận 1', type: 'Villa', area: 120, rooms: 3, price: 45, location: 'Quận 1', rating: 4.8, description: 'Villa mới xây với thiết kế hiện đại, 3 phòng ngủ, 2 phòng tắm, sân vườn riêng. Đầy đủ tiện nghi cao cấp.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp tiện nghi', 'Máy giặt', 'Sân vườn', 'Bể bơi'], owner: 'Trần Minh Anh', phone: '0908-111-111', images: [allImages[0], allImages[1], allImages[2]] },
-            { id: 2, name: 'Căn Hộ 1PN Hiện Đại', type: 'Căn hộ 1PN', area: 55, rooms: 1, price: 18, location: 'Quận 3', rating: 4.6, description: 'Căn hộ 1 phòng ngủ, 1 phòng tắm, bếp kỹ năng, phòng khách sang trọng.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp', 'Máy giặt', 'Tivi thông minh'], owner: 'Lê Văn B', phone: '0908-222-222', images: [allImages[3], allImages[4], allImages[5]] },
+            { id: 2, name: 'Căn Hộ 1PN Hiện Đại', type: 'Căn hộ 1PN', area: 55, rooms: 1, price: 18, location: 'Quận 3', rating: 4.6, description: 'Căn hộ 1 phòng ngủ, 1 phòng tắm, bếp tiện nghi, phòng khách sang trọng.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp', 'Máy giặt', 'Tivi thông minh'], owner: 'Lê Văn B', phone: '0908-222-222', images: [allImages[3], allImages[4], allImages[5]] },
             { id: 3, name: 'Studio Gọn Gàng', type: 'Studio', area: 35, rooms: 1, price: 12, location: 'Quận 1', rating: 4.5, description: 'Studio tiện nghi, tối ưu không gian, phù hợp cho nhân viên công ty hoặc du khách.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp', 'Tủ lạnh'], owner: 'Phạm Thị C', phone: '0908-333-333', images: [allImages[6], allImages[7], allImages[8]] },
             { id: 4, name: 'Căn Hộ 2PN Gia Đình', type: 'Căn hộ 2PN', area: 75, rooms: 2, price: 28, location: 'Quận 2', rating: 4.7, description: 'Căn hộ 2 phòng ngủ, 2 phòng tắm, rộng rãi, thoáng mát, lý tưởng cho gia đình nhỏ.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp tiện nghi', 'Máy giặt', 'Tivi thông minh'], owner: 'Nguyễn Văn D', phone: '0908-444-444', images: [allImages[9], allImages[10], allImages[11]] },
             { id: 5, name: 'Villa Có Hồ Bơi', type: 'Villa', area: 150, rooms: 4, price: 65, location: 'Quận 7', rating: 4.9, description: 'Villa cao cấp với 4 phòng ngủ, hồ bơi riêng, sân vườn, bếp ngoài trời.', amenities: ['Wi-Fi', 'Máy lạnh', 'Bếp ngoài', 'Máy giặt', 'Hồ bơi', 'BBQ'], owner: 'Đặng Văn E', phone: '0908-555-555', images: [allImages[12], allImages[13], allImages[14]] },
@@ -1324,11 +1324,11 @@
                             <p class="property-desc">${prop.description}</p>
                             <div class="property-features">
                                 <span class="feature">📐 ${prop.area}m²</span>
-                                <span class="feature">🛏️ ${prop.rooms}PN</span>
+                                <span class="feature">🛏️ ${prop.type === 'Studio' ? 'Studio' : prop.rooms + 'PN'}</span>
                                 <span class="feature">📍 ${prop.location}</span>
                             </div>
                             <div class="property-footer">
-                                <span class="property-price">${prop.price}M</span>
+                                <span class="property-price">${prop.price} triệu/tháng</span>
                                 <button class="btn-view">Xem chi tiết</button>
                             </div>
                         </div>
@@ -1366,22 +1366,25 @@
             renderProperties();
         }
 
+        let currentProperty = null;
+
         function openModal(property) {
+            currentProperty = property;
             const modal = document.getElementById('propertyModal');
             document.getElementById('modalTitle').textContent = property.name;
             document.getElementById('modalMeta').textContent = `${property.type} · ${property.area}m²`;
-            document.getElementById('modalPrice').textContent = `${property.price}M/tháng`;
+            document.getElementById('modalPrice').textContent = `${property.price} triệu/tháng`;
             document.getElementById('modalArea').textContent = `${property.area}m²`;
-            document.getElementById('modalRooms').textContent = `${property.rooms} phòng`;
+            document.getElementById('modalRooms').textContent = property.type === 'Studio' ? 'Studio' : `${property.rooms} phòng`;
             document.getElementById('modalLocation').textContent = property.location;
             document.getElementById('modalDescription').textContent = property.description;
             document.getElementById('modalOwner').textContent = property.owner;
-            document.getElementById('modalPhone').textContent = property.phone;
+            document.getElementById('modalPhone').innerHTML = `<a href="tel:${property.phone.replace(/-/g, '')}">${property.phone}</a>`;
 
             const amenitiesHTML = property.amenities.map(a => `<div class="amenity-item">${a}</div>`).join('');
             document.getElementById('modalAmenities').innerHTML = amenitiesHTML;
 
-            const galleryHTML = property.images.map(img => `<img src="${img}" alt="Property" loading="lazy">`).join('');
+            const galleryHTML = property.images.map(img => `<img src="${img}" alt="Property">`).join('');
             document.getElementById('modalGallery').innerHTML = galleryHTML;
 
             // Load map
@@ -1443,12 +1446,16 @@
         }
 
         function bookProperty() {
-            alert('Cảm ơn bạn! Yêu cầu đặt phòng đã được gửi. Chúng tôi sẽ liên hệ với bạn sớm.');
-            closeModal();
+            if (currentProperty && currentProperty.phone) {
+                closeModal();
+                window.location.href = 'tel:' + currentProperty.phone.replace(/-/g, '');
+            }
         }
 
         function contactOwner() {
-            alert('Bạn sẽ được chuyển hướng tới ứng dụng liên hệ...');
+            if (currentProperty && currentProperty.phone) {
+                window.location.href = 'tel:' + currentProperty.phone.replace(/-/g, '');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
