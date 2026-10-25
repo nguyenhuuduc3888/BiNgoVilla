@@ -82,6 +82,11 @@
             display: flex;
         }
 
+        /* On phones the desktop link bar stays hidden; only the hamburger dropdown is used */
+        nav.desktop-nav {
+            display: none;
+        }
+
         nav a {
             font-weight: 600;
             color: #333333;
@@ -994,7 +999,7 @@
                 <a href="#contact">Liên hệ</a>
                 <button class="cta-button" onclick="scrollToFilter()">Tìm kiếm ngay</button>
             </nav>
-            <nav class="active">
+            <nav class="active desktop-nav">
                 <a href="#home">Trang chủ</a>
                 <a href="#properties">Dịch vụ</a>
                 <a href="#about">Giới thiệu</a>
@@ -1490,15 +1495,14 @@
             const mobileNav = document.getElementById('navMenu');
             if (mobileNav) {
                 mobileNav.addEventListener('click', (e) => {
-                    const target = e.target;
-                        if (target && (target.tagName === 'A' || target.classList.contains('cta-button'))) {
-                            mobileNav.classList.remove('active');
-                            const btn = document.getElementById('menuToggle');
-                            if (btn) btn.setAttribute('aria-expanded', 'false');
-                            document.body.style.overflow = 'auto';
-                            // ensure the nav-open class is removed so desktop nav hides again
-                            document.body.classList.remove('nav-open');
-                        }
+                    const hit = e.target && e.target.closest ? e.target.closest('a, .cta-button') : null;
+                    if (hit) {
+                        mobileNav.classList.remove('active');
+                        const btn = document.getElementById('menuToggle');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = 'auto';
+                        document.body.classList.remove('nav-open');
+                    }
                 });
             }
 
