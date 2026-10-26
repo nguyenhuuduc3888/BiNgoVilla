@@ -240,27 +240,11 @@
                 padding: 14px;
             }
 
-            /* By default hide the desktop nav on small screens. When the mobile
-               menu is opened we add `nav-open` to <body> to show it (so the
-               hamburger can reveal the same links). This avoids using
-               !important and lets JS control visibility.) */
+            /* On small screens the desktop link bar stays hidden for good.
+               The hamburger opens only the #navMenu dropdown, which already
+               closes itself when an item is tapped. */
             nav.active {
                 display: none;
-            }
-
-            body.nav-open nav.active {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                position: absolute;
-                top: 60px;
-                left: 20px;
-                right: 20px;
-                background: #ffffff;
-                padding: 16px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                z-index: 998;
             }
         }
 
